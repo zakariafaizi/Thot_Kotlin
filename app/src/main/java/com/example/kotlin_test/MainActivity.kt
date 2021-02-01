@@ -17,10 +17,4 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    private fun showRegisteration()
-    {
-
-
-
-    }
 }
