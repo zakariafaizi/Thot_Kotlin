@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/myItem1"
-        android:title="item1"/>
+        android:id="@+id/itemRegister"
+        android:title="Register"/>
 
     <item
-        android:id="@+id/myItem2"
-        android:title="item2"/>
+        android:id="@+id/itemLogin"
+        android:title="Login"/>
 
 
     <item
-        android:id="@+id/myItem3"
-        android:title="item3"/>
+        android:id="@+id/itemHome"
+        android:title="Home"/>
 
 
 

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout3">
+
 
 
     <LinearLayout
@@ -31,24 +35,25 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Age"
-            android:id="@+id/age"
+            android:hint="Education Level"
+            android:id="@+id/level"
             android:layout_marginBottom="20dp"
             />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
-            android:id="@+id/username"
+            android:hint="Email"
+            android:id="@+id/email"
             android:layout_marginBottom="20dp"
 
             />
-        <EditText
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:id="@+id/password"
+            android:text="Upload Picture"
+            android:id="@+id/picture"
+            android:textColor="@color/white"
             android:layout_marginBottom="20dp"
 
             />
@@ -62,7 +67,19 @@
             android:layout_gravity="center"/>
 
 
+
+
     </LinearLayout>
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_drawer_menu"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true" />
 
-</LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
