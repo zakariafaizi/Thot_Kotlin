@@ -95,19 +95,20 @@ class RegisterActivity : AppCompatActivity() {
 
         val student = Student(prenom, nom, niveau, util, mdp, courriel, image, false)
 
+        firstname.setText(student.Username)
+        lastname.setText(student.Password)
 
     }
 
 
-    private fun usr(n:String,p:String,c:String) {
-        util = n.split(0,"f")
+    private fun usr(n:String,p:String,c:String): String {
+        util = n.substring(0,2).toUpperCase() +"" + p.substring(1,3) + "" + c.substring(2,3)
         return util
     }
 
 
-    private fun pswd(nom: String, prenom: String) {
-        val rnd = Random()
-        mdp =
+    private fun pswd(n:String,p:String,c:String): String {
+        mdp = n.substring(1,2).toUpperCase() +"@" + p.substring(2,3).toUpperCase() + "" + c.substring(3,5)
         return mdp
     }
 
