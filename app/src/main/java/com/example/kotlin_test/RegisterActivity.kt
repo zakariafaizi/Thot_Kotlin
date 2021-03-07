@@ -1,7 +1,5 @@
 package com.example.kotlin_test
 
-import android.R.attr
-import android.R.string
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -11,10 +9,13 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_login.*
+import com.example.kotlin_test.api.RetrofitClient
+import com.example.kotlin_test.models.DefaultResponse
+import com.example.kotlin_test.models.Student
 import kotlinx.android.synthetic.main.activity_register.*
-import java.util.*
-import kotlin.random.Random
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -23,6 +24,7 @@ class RegisterActivity : AppCompatActivity() {
 
     lateinit var prenom : String
     lateinit var nom : String
+    lateinit var age : String
     lateinit var niveau : String
     lateinit var util : String
     lateinit var mdp : String
@@ -70,6 +72,22 @@ class RegisterActivity : AppCompatActivity() {
 
 
         registerok.setOnClickListener {
+
+            prenom = firstname.text.trim().toString()
+            nom    = lastname.text.trim().toString()
+            age = Age.text.trim().toString()
+            niveau = level.text.trim().toString()
+            courriel = email.text.trim().toString()
+
+            if(courriel.isEmpty())
+            {
+                email.error = "Email Required"
+                email.requestFocus()
+                return@setOnClickListener
+
+            }
+
+
             registerStudent()
         }
 
@@ -84,19 +102,29 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registerStudent()
     {
-        prenom = firstname.text.trim().toString()
-        nom    = lastname.text.trim().toString()
-        niveau = level.text.trim().toString()
-        courriel = email.text.trim().toString()
+
+
 
 
         util = usr(nom,prenom,courriel)
         mdp = pswd(nom,prenom,courriel)
 
-        val student = Student(prenom, nom, niveau, util, mdp, courriel, image, false)
 
-        firstname.setText(student.Username)
-        lastname.setText(student.Password)
+        val student = Student( nom,prenom, age.toInt(),niveau, util, mdp,  image,courriel, false)
+
+
+
+        RetrofitClient.instance.createUser(nom,prenom,age.toInt(),courriel,niveau,image,util,mdp,0)
+                .enqueue(object:Callback<DefaultResponse>{
+                    override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
+                     Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_LONG).show()
+                    }
+
+                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                    }
+                })
+
 
     }
 

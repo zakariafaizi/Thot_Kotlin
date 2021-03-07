@@ -9,9 +9,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.kotlin_test.api.RetrofitClient
+import com.example.kotlin_test.models.LoginResponse
 import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_register.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
@@ -22,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
 
 
         nav = findViewById(R.id.navView)
@@ -56,6 +63,63 @@ class LoginActivity : AppCompatActivity() {
 
             true
         }
+
+        loginok.setOnClickListener {
+            val username = usernamelg.text.toString().trim()
+            val password = passwordlg.text.toString().trim()
+
+            if(password.isEmpty())
+            {
+                passwordlg.error = "Password Required"
+                passwordlg.requestFocus()
+                return@setOnClickListener
+
+            }
+
+            if(username.isEmpty())
+            {
+                usernamelg.error = "Username Required"
+                usernamelg.requestFocus()
+                return@setOnClickListener
+
+            }
+
+
+            RetrofitClient.instance.userLogin(username ,password)
+                    .enqueue(object:Callback<LoginResponse>
+            {
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+
+                    if(!response.body()?.error!!)
+                    {
+
+
+                        val id = response.body()?.user!!.idEtudiant
+
+
+                        Toast.makeText(applicationContext, "id" + id, Toast.LENGTH_LONG).show()
+
+                    }
+                    else
+                    {
+                        Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_LONG).show()
+
+                    }
+
+
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+
+                    Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                }
+            })
+        }
+
+
+
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem):Boolean{

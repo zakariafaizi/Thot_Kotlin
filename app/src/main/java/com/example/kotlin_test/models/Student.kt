@@ -1,9 +1,10 @@
-package com.example.kotlin_test
+package com.example.kotlin_test.models
 
-class Student constructor(firstname:String, lastname:String, educationlevel: String, username : String , password : String , photo :String,email:String, changedpw : Boolean)
+class Student constructor(lastname:String,firstname:String,age :Int, educationlevel: String, username : String , password : String , photo :String,email:String, changedpw : Boolean)
 {
-    var Firstname : String
     var Lastname : String
+    var Firstname : String
+    var Age : Int
     var Educationlevel : String
     var Username : String
     var Password : String
@@ -13,8 +14,9 @@ class Student constructor(firstname:String, lastname:String, educationlevel: Str
 
     init {
 
-        this.Firstname = firstname
         this.Lastname = lastname
+        this.Firstname = firstname
+        this.Age = age
         this.Educationlevel = educationlevel
         this.Username = username
         this.Password = password

@@ -6,7 +6,8 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@drawable/wallpaper">
 
 
 
@@ -29,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
-                android:id="@+id/username"
+                android:id="@+id/usernamelg"
                 android:layout_marginBottom="20dp"
 
                 />
@@ -38,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:id="@+id/password"
+                android:id="@+id/passwordlg"
                 android:layout_marginBottom="20dp"
 
                 />
@@ -51,11 +52,7 @@
                 android:gravity="center"
                 android:layout_gravity="center"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txt"
-                android:text="test"/>
+
 
 
         </LinearLayout>
