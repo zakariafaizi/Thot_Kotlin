@@ -28,13 +28,41 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val bundle: Bundle? = intent.extras
-        val idEtudiant = bundle?.get("idEtudiant")
+        try{
+            val bundle: Bundle? = intent.extras
+            val idEtudiant = bundle?.get("idEtudiant")
+            showClasses(idEtudiant.toString().toInt())
+        }
+        catch(ex:Exception)
+        {
+            this.startActivity(Intent(this,LoginActivity::class.java))
+        }
 
 
 
-        showClasses(idEtudiant.toString().toInt())
 
+
+
+        navView2.setNavigationItemSelectedListener{
+            when(it.itemId){
+
+                R.id.itemRegister ->{
+                    this.startActivity(Intent(this,RegisterActivity::class.java))
+                }
+
+                R.id.itemLogin -> {
+                    this.startActivity(Intent(this,LoginActivity::class.java))
+                }
+
+                R.id.itemHome -> {
+                    this.startActivity(Intent(this,MainActivity::class.java))
+                }
+                else -> super.onOptionsItemSelected(it)
+            }
+
+
+            true
+        }
 
     }
 
