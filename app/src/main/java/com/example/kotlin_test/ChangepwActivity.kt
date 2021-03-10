@@ -24,7 +24,11 @@ class ChangepwActivity : AppCompatActivity() {
         setContentView(R.layout.activity_changepw)
 
         val bundle: Bundle? = intent.extras
+
+
         val idEtudiant = bundle?.get("idEtudiant")
+
+
 
 
 
@@ -88,6 +92,10 @@ class ChangepwActivity : AppCompatActivity() {
                                 startActivity(intent)
                             }
 
+                    }
+                    else
+                    {
+                        Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_LONG).show()
                     }
 
                 }

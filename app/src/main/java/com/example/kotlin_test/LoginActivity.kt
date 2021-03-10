@@ -13,6 +13,7 @@ import com.example.kotlin_test.api.RetrofitClient
 import com.example.kotlin_test.models.LoginResponse
 import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_changepw.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 import retrofit2.Call
@@ -28,6 +29,26 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val bundle: Bundle? = intent.extras
+
+        val etat = bundle?.get("register")
+
+        val actualusername = bundle?.get("username")
+        val actualpassword = bundle?.get("password")
+
+
+
+        if(etat == "yes")
+        {
+            textview2.text =
+                    "\n" + "----------" +
+                    "\n" + "Your Actual Username : " + actualusername +
+                    "\n" + "Your Actual Password : " + actualpassword +
+                            "\n" + "----------"
+
+
+        }
 
 
 
@@ -97,6 +118,9 @@ class LoginActivity : AppCompatActivity() {
                         val id = response.body()?.user!!.idEtudiant
                         val changedpw = response.body()?.user!!.changedpw
 
+
+
+
                         redirectStudent(id,changedpw)
 
                         Toast.makeText(applicationContext, "id" + id, Toast.LENGTH_LONG).show()
@@ -127,7 +151,6 @@ class LoginActivity : AppCompatActivity() {
     fun redirectStudent( id:Int, chpw:Int)
     {
         val intent : Intent
-        this.startActivity(Intent(this,RegisterActivity::class.java))
 
         if(chpw == 1)
         {
