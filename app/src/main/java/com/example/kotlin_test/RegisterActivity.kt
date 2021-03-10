@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin_test.api.RetrofitClient
 import com.example.kotlin_test.models.DefaultResponse
 import com.example.kotlin_test.models.Student
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_register.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +33,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var image : String
 
 
-
+    lateinit var nav : NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +44,8 @@ class RegisterActivity : AppCompatActivity() {
         drawerLayout3.addDrawerListener(toggle)
         toggle.syncState()
 
+
+        nav = findViewById(R.id.navView3)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -68,7 +71,26 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        nav.setNavigationItemSelectedListener{
+            when(it.itemId){
 
+                R.id.itemRegister ->{
+                    this.startActivity(Intent(this,RegisterActivity::class.java))
+                }
+
+                R.id.itemLogin -> {
+                    this.startActivity(Intent(this,LoginActivity::class.java))
+                }
+
+                R.id.itemHome -> {
+                    this.startActivity(Intent(this,MainActivity::class.java))
+                }
+                else -> super.onOptionsItemSelected(it)
+            }
+
+
+            true
+        }
 
 
         registerok.setOnClickListener {

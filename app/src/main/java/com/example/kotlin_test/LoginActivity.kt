@@ -95,7 +95,9 @@ class LoginActivity : AppCompatActivity() {
 
 
                         val id = response.body()?.user!!.idEtudiant
+                        val changedpw = response.body()?.user!!.changedpw
 
+                        redirectStudent(id,changedpw)
 
                         Toast.makeText(applicationContext, "id" + id, Toast.LENGTH_LONG).show()
 
@@ -121,6 +123,31 @@ class LoginActivity : AppCompatActivity() {
 
 
     }
+
+    fun redirectStudent( id:Int, chpw:Int)
+    {
+        val intent : Intent
+        this.startActivity(Intent(this,RegisterActivity::class.java))
+
+        if(chpw == 1)
+        {
+            //Already changed pw and username
+            //  redirect to Main Activity
+            intent = Intent(this,MainActivity::class.java)
+            intent.putExtra("idEtudiant" , id)
+            startActivity(intent)
+        }
+        else if(chpw == 0)
+        {
+            //have not changed pw and username
+            //  redirect to ChangepwActivity
+            intent = Intent(this,ChangepwActivity::class.java)
+            intent.putExtra("idEtudiant" , id)
+            startActivity(intent)
+        }
+
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem):Boolean{
         if(toggle.onOptionsItemSelected(item)){
