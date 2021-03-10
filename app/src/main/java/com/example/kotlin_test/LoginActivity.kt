@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     lateinit var nav : NavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -123,7 +124,7 @@ class LoginActivity : AppCompatActivity() {
 
                         redirectStudent(id,changedpw)
 
-                        Toast.makeText(applicationContext, "id" + id, Toast.LENGTH_LONG).show()
+
 
                     }
                     else
