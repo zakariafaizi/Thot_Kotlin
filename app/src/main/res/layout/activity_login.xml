@@ -25,6 +25,17 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textview2"
+                android:gravity="center"
+                android:textColor="@color/teal_700"
+                android:layout_marginBottom="54dp"
+                android:textSize="20dp"
+
+                />
+
 
             <EditText
                 android:layout_width="match_parent"
